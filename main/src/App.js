@@ -1,9 +1,9 @@
 import './App.css';
 import tune from './json/tune.json';
+import React from 'react';
 
 const CHANNELS = 4;
 const ROWS = 16;
-
 
 function App() {
   return (
@@ -30,16 +30,31 @@ function Channel(props) {
       <hr/>
       <div id="track_0">
         {tune.channels[props.id]['rows'].map((data, index) => (
-          <div className="rows">
-            <input className="row row-note" value={data.note + "-" + data.octave} />
-            <input className="row row-instrument" value={"." + data.instrument} />
-            <input className="row row-volume" value="." />
-            <input className="row row-effect" value={data.effect} />
-            <input className="row row-parameter" value={data.parameter} />
-          </div>
+          <Row data={data}></Row>
         ))}
       </div>
     </div>
   );
 }
+class Row extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleWheel = this.handleWheel.bind(this);
+  }
+  handleWheel (e)  {
+    console.log(e);
+  }
+  render () {
+    return (
+      <div className="rows">
+        <input onWheel={this.handleWheel} className="row row-note" defaultValue={this.props.data.note + "-" + this.props.data.octave} />
+        <input onWheel={this.handleWheel} className="row row-instrument" defaultValue={"." + this.props.data.instrument} />
+        <input onWheel={this.handleWheel} className="row row-volume" defaultValue="." />
+        <input onWheel={this.handleWheel} className="row row-effect" defaultValue={this.props.data.effect} />
+        <input onWheel={this.handleWheel} className="row row-parameter" defaultValue={this.props.data.parameter} />
+      </div>
+    )
+  }
+}
+
 export default App;
