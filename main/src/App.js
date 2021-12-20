@@ -49,7 +49,7 @@ class Row extends React.Component {
     let element = e.target;
     let id = e.target.id;
 
-    let direction = e.deltaY > 0;
+    let direction = e.deltaY < 0 ? "up" : "down";
 
     console.log(e.deltaMode, e.deltaY, direction, element.dataset.channel, element.dataset.row);
 
