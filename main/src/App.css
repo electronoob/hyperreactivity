@@ -18,6 +18,10 @@
     text-align: center;
     border: none;
     font-family: 'Press Start 2P', cursive;
+    border: 2px solid rgba(0,0,0,0);
+}
+.active {
+    border: 2px solid rgba(0,0,0,1);
 }
 .row-note {
     width: 3em;

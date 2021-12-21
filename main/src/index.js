@@ -4,9 +4,37 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import store from './store'
+import { Provider } from 'react-redux'
+
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom";
+
+import Info from "./routes/info"
+import Tracker from "./routes/tracker"
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<App />}>
+            <Route path="/" element={<Info />} />
+            <Route path="info" element={<Info />} />
+            <Route path="tracker" element={<Tracker />} />
+            <Route
+              path="*"
+              element={
+                <h1>404 baby</h1>
+              }
+            />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
