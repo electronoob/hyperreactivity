@@ -43,6 +43,7 @@ function Channel(props) {
       //this.dispatch = useDispatch()
     }
     handleWheel (e)  {
+      e.preventDefault();
       let value = e.target.value;
       let element = e.target;
       let id = e.target.id;
